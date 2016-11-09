@@ -10,9 +10,6 @@ describe DockingStation do
   it 'tests for repsonse to "return_bike" method' do
     expect(subject).to respond_to :dock_bike
   end
-  # it 'test for the bike_available method' do
-  #   expect(subject).to respond_to :bike_available?
-  # end
   it 'tests if bike is available?' do
     bike_ready = subject.release_bike
     expect(bike_ready).to respond_to :bike_available?
