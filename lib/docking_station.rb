@@ -13,8 +13,19 @@ class DockingStation
   end
 
   def release_bike
-    raise "No Bikes!" if empty?
-    Bike.new
+    raise "No Bikes Available!" if empty?
+    released_bike = nil
+    @bikes.each do |bike|
+        if bike.working
+          released_bike = bike
+          break
+        end
+    end
+
+    raise "No Bikes Available!" if released_bike == nil
+
+    @bikes.delete(released_bike)
+
   end
 
   def dock(bike)
