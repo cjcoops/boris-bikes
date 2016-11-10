@@ -40,7 +40,7 @@ end
 
 describe "Exercise 13 - raise error if station is full" do
   subject {station = DockingStation.new}
-  it "raises an error when when trying to dock a bike if the station is full" do
+  it "raises an error when wzhen trying to dock a bike if the station is full" do
     DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
     expect {subject.dock(Bike.new)}.to raise_error("Docking station is full")
   end
@@ -51,5 +51,25 @@ describe "Exercise 14 - complex attributes" do
   it 'tests if you can dock bikes to its capacity?' do
     DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
     expect(subject.bikes.count).to eq DEFAULT_CAPACITY
+  end
+end
+
+describe "Exercise 17 - initialization defaults" do
+
+  subject {station = DockingStation.new}
+
+  it "checks for a @capacity instance variable" do
+    expect(subject).to respond_to :capacity
+  end
+
+  it "should receive a default capacity of 20" do
+    expect(subject.capacity).to eq DEFAULT_CAPACITY
+  end
+end
+
+describe "tests cumstom capacitties for docking station" do
+  subject { station =  DockingStation.new(5)}
+  it "should receive a custom capacity value as an argument" do
+    expect(subject.capacity).to eq 5
   end
 end
