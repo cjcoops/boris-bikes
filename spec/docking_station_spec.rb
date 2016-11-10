@@ -26,7 +26,7 @@ end
 describe 'Exercise 12 "raising errors"' do
   subject{station = DockingStation.new}
   it 'test for the raising of an error if no bikes are available' do
-    expect{subject.bike_available?}.to raise_error("No Bikes!")
+    expect{subject.release_bike}.to raise_error("No Bikes!")
   end
   it 'tests for not raising an error if bikes are available' do
     bike = Bike.new

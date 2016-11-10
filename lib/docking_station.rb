@@ -9,17 +9,23 @@ class DockingStation
   end
 
   def release_bike
-    bike_available?
+    raise "No Bikes!" if empty?
     Bike.new
   end
 
   def dock(bike)
-    raise "Docking station is full" if @bikes.count == 20
+    raise "Docking station is full" if full?
     @bikes << bike
   end
 
-  def bike_available?
-    raise "No Bikes!" if @bikes.count == 0
+  private
+
+  def full?
+    @bikes.count == 20
+  end
+
+  def empty?
+    @bikes.count == 0
   end
 
 end
