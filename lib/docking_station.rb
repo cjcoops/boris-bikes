@@ -5,6 +5,7 @@ class DockingStation
   attr_reader :bike
 
   def release_bike
+    bike_available?
     Bike.new
   end
 
@@ -14,7 +15,6 @@ class DockingStation
 
   def bike_available?
     raise "No Bikes!" if self.bike == nil
-    bike
   end
 
 end

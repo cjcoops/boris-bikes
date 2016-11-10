@@ -4,8 +4,10 @@ require 'bike.rb'
 describe DockingStation do
   it {is_expected.to respond_to :release_bike}
   it "shows if bike is working" do
-    bike = subject.release_bike
-    expect(bike).to be_working
+    bike = Bike.new
+    subject.dock_bike(bike)
+    released_bike = subject.release_bike
+    expect(released_bike).to be_working
   end
   it 'tests for repsonse to "return_bike" method' do
     expect(subject).to respond_to :dock_bike
@@ -32,6 +34,9 @@ describe 'Exercise 12 "raising errors"' do
   it 'tests for not raising an error if bikes are available' do
     bike = Bike.new
     subject.dock_bike(bike)
-    expect(subject.bike_available?).to eq bike
+    expect{subject.release_bike}.to_not raise_error
+  end
+  it 'tests if release bike method raises an error if no bikes are available' do
+    expect{subject.release_bike}.to raise_error("No Bikes!")
   end
 end
