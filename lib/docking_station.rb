@@ -12,4 +12,9 @@ class DockingStation
     @bike = bike
   end
 
+  def bike_available?
+    raise "No Bikes!" if self.bike == nil
+    bike
+  end
+
 end

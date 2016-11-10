@@ -10,10 +10,7 @@ describe DockingStation do
   it 'tests for repsonse to "return_bike" method' do
     expect(subject).to respond_to :dock_bike
   end
-  it 'tests if bike is available?' do
-    bike_ready = subject.release_bike
-    expect(bike_ready).to respond_to :bike_available?
-  end
+
   it 'tests if bike is docked' do
     expect(subject).to respond_to(:dock_bike).with(1).argument
   end
@@ -24,5 +21,17 @@ describe DockingStation do
     bike = Bike.new
     expect(subject.dock_bike(bike)).to eq bike
     expect(subject.bike).to eq bike
+  end
+end
+
+describe 'Exercise 12 "raising errors"' do
+  subject{station = DockingStation.new}
+  it 'test for the raising of an error if no bikes are available' do
+    expect{subject.bike_available?}.to raise_error("No Bikes!")
+  end
+  it 'tests for not raising an error if bikes are available' do
+    bike = Bike.new
+    subject.dock_bike(bike)
+    expect(subject.bike_available?).to eq bike
   end
 end
