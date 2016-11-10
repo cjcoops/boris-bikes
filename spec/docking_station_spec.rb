@@ -41,15 +41,15 @@ end
 describe "Exercise 13 - raise error if station is full" do
   subject {station = DockingStation.new}
   it "raises an error when when trying to dock a bike if the station is full" do
-    20.times {subject.dock(Bike.new)}
+    DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
     expect {subject.dock(Bike.new)}.to raise_error("Docking station is full")
   end
 end
 
 describe "Exercise 14 - complex attributes" do
   subject {station = DockingStation.new}
-  it 'tests if you can dock 20 bikes' do
-    20.times {subject.dock(Bike.new)}
-    expect(subject.bikes.count).to eq 20
+  it 'tests if you can dock bikes to its capacity?' do
+    DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
+    expect(subject.bikes.count).to eq DEFAULT_CAPACITY
   end
 end
