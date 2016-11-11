@@ -8,7 +8,7 @@ describe DockingStation do
     bike = Bike.new
     subject.dock(bike)
     released_bike = subject.release_bike
-    expect(released_bike.working).to be true
+    expect(released_bike).to be_working
   end
   it 'tests for repsonse to "return_bike" method' do
     expect(subject).to respond_to :dock
