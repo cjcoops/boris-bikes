@@ -18,7 +18,7 @@ class DockingStation
     @bikes.each do |bike|
         if bike.working
           released_bike = bike
-          # break
+          break
         end
     end
 
