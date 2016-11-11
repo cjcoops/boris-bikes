@@ -1,4 +1,4 @@
-require_relative 'bike'
+require_relative 'bike.rb'
 
 DEFAULT_CAPACITY = 20
 
