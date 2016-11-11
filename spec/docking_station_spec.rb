@@ -4,8 +4,10 @@ require "pry"
 
 describe DockingStation do
   it {is_expected.to respond_to :release_bike}
+
+  let(:bike) { double("bike", :working => true) }
+
   it "shows if bike is working" do
-    bike = double(:bike)
     subject.dock(bike)
     released_bike = subject.release_bike
     expect(released_bike.working).to be true
@@ -25,11 +27,12 @@ end
 
 describe 'Exercise 12 "raising errors"' do
   subject{station = DockingStation.new}
+  let(:bike) { double("bike", :working => true) }
+
   it 'test for the raising of an error if no bikes are available' do
     expect{subject.release_bike}.to raise_error("No Bikes Available!")
   end
   it 'tests for not raising an error if bikes are available' do
-    bike = double(:bike)
     subject.dock(bike)
     expect{subject.release_bike}.to_not raise_error
   end
@@ -76,16 +79,15 @@ end
 
 describe "Exercise 18" do
   subject { station = DockingStation.new }
+  let(:bike) { double("bike", :working => false) }
 
   it "tests if a broken bike can be docked" do
-    subject.dock(instance_double("bike", :working => false))
-    binding.pry
-
+    subject.dock(bike)
     expect(subject.bikes.count).to eq 1
   end
 
   it "tests the dock will not release a broken bike" do
-    subject.dock(instance_double("bike", :working => false))
+    subject.dock(bike)
     expect{subject.release_bike}.to raise_error("No Bikes Available!")
   end
 end
