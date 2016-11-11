@@ -2,13 +2,12 @@ require_relative 'docking_station.rb'
 
 class Van
 
-  attr_accessor :bikes
-
-  def initialize
-    @bikes = []
+  def dock(bike)
+    bike
   end
 
-  def load_bikes(dock)
-    self.bikes = dock.bikes
+  def release_bike
+    
   end
+
 end
